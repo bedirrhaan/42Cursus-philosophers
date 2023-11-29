@@ -6,7 +6,7 @@
 /*   By: bcopoglu <bcopoglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:51:52 by bcopoglu          #+#    #+#             */
-/*   Updated: 2023/11/29 10:51:13 by bcopoglu         ###   ########.fr       */
+/*   Updated: 2023/11/29 10:53:59 by bcopoglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	write_error(char *str)
 	len = 0;
 	while (str[len])
 		len++;
-	write(2, "Hata: ", 7);
+	write(2, "Error: ", 7);
 	write(2, str, len);
 	write(2, "\n", 1);
 	return (1);
