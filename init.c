@@ -6,18 +6,22 @@
 /*   By: bcopoglu <bcopoglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:51:45 by bcopoglu          #+#    #+#             */
-/*   Updated: 2023/11/27 14:56:16 by bcopoglu         ###   ########.fr       */
+/*   Updated: 2023/11/29 10:46:32 by bcopoglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 #include <pthread.h>
+#include <stdlib.h>
 
 int	init_mutex(t_rules *rules)
 {
 	int	i;
 
 	i = rules->nb_philo;
+	rules->forks = malloc(sizeof(pthread_mutex_t) * i);
+	if (!(rules->forks))
+		return (1);
 	while (--i >= 0)
 	{
 		if (pthread_mutex_init(&(rules->forks[i]), NULL))
@@ -35,6 +39,9 @@ int	init_philosophers(t_rules *rules)
 	int	i;
 
 	i = rules->nb_philo;
+	rules->philosophers = malloc(sizeof(t_philosopher) * i);
+	if (!(rules->philosophers))
+		return (1);
 	while (--i >= 0)
 	{
 		rules->philosophers[i].id = i;
@@ -56,7 +63,7 @@ int	init_all(t_rules *rules, char **argv)
 	rules->all_ate = 0;
 	rules->dieded = 0;
 	if (rules->nb_philo <= 0 || rules->time_death < 0 || rules->time_eat < 0
-		|| rules->time_sleep < 0 || rules->nb_philo > 250)
+		|| rules->time_sleep < 0)
 		return (1);
 	if (argv[5])
 	{

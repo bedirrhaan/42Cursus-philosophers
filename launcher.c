@@ -6,7 +6,7 @@
 /*   By: bcopoglu <bcopoglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:51:35 by bcopoglu          #+#    #+#             */
-/*   Updated: 2023/11/27 14:55:37 by bcopoglu         ###   ########.fr       */
+/*   Updated: 2023/11/28 23:06:21 by bcopoglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	philo_eats(t_philosopher *philo)
 	pthread_mutex_unlock(&(rules->forks[philo->right_fork_id]));
 }
 
-void	*p_thread(void *void_philosopher)
+void	*routine(void *void_philosopher)
 {
 	int				i;
 	t_philosopher	*philo;
@@ -111,7 +111,7 @@ int	launcher(t_rules *rules)
 	rules->first_timestamp = timestamp();
 	while (i < rules->nb_philo)
 	{
-		if (pthread_create(&(phi[i].thread_id), NULL, p_thread, &(phi[i])))
+		if (pthread_create(&(phi[i].thread_id), NULL, routine, &(phi[i])))
 			return (1);
 		phi[i].t_last_meal = timestamp();
 		i++;

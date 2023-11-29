@@ -6,7 +6,7 @@
 /*   By: bcopoglu <bcopoglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:52:16 by bcopoglu          #+#    #+#             */
-/*   Updated: 2023/11/27 14:53:54 by bcopoglu         ###   ########.fr       */
+/*   Updated: 2023/11/28 23:18:22 by bcopoglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ typedef struct s_rules
 	int					all_ate;
 	long long			first_timestamp;
 	pthread_mutex_t		meal_check;
-	pthread_mutex_t		forks[250];
+	pthread_mutex_t		*forks;
 	pthread_mutex_t		writing;
-	t_philosopher		philosophers[250];
+	t_philosopher		*philosophers;
 }						t_rules;
 
 /*

@@ -6,11 +6,12 @@
 /*   By: bcopoglu <bcopoglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:52:04 by bcopoglu          #+#    #+#             */
-/*   Updated: 2023/11/27 14:52:06 by bcopoglu         ###   ########.fr       */
+/*   Updated: 2023/11/29 10:52:04 by bcopoglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+#include <stdlib.h>
 
 int	main(int argc, char **argv)
 {
@@ -24,5 +25,6 @@ int	main(int argc, char **argv)
 		return (error_manager(ret));
 	if (launcher(&rules))
 		return (write_error("Thread Create Error"));
-	return (0);
+	free(rules.forks);
+	free(rules.philosophers);
 }
