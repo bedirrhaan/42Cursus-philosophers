@@ -6,7 +6,7 @@
 /*   By: bcopoglu <bcopoglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:52:16 by bcopoglu          #+#    #+#             */
-/*   Updated: 2023/11/29 11:34:18 by bcopoglu         ###   ########.fr       */
+/*   Updated: 2023/11/29 12:33:58 by bcopoglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int						init_mutex(t_rules *rules);
 */
 
 int						ft_atoi(const char *str);
+int						ft_isdigit(char **array);
 void					action_print(t_rules *rules, int id, char *string);
 long long				timestamp(void);
 long long				time_diff(long long past, long long pres);

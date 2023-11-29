@@ -6,7 +6,7 @@
 /*   By: bcopoglu <bcopoglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:52:09 by bcopoglu          #+#    #+#             */
-/*   Updated: 2023/11/29 11:34:34 by bcopoglu         ###   ########.fr       */
+/*   Updated: 2023/11/29 12:35:59 by bcopoglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 
 int	ft_atoi(const char *str)
 {
-	int		i;
-	int		result;
-	int		sign;
+	int			i;
+	int			result;
+	int			sign;
 
 	i = 0;
 	result = 0;
@@ -77,4 +77,25 @@ void	action_print(t_rules *rules, int id, char *string)
 	}
 	pthread_mutex_unlock(&(rules->writing));
 	return ;
+}
+
+int	ft_isdigit(char **array)
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	j = 0;
+	while (array[i])
+	{
+		j = 0;
+		while (array[i][j])
+		{
+			if (!(array[i][j] >= '0' && array[i][j] <= '9'))
+				return (1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
 }

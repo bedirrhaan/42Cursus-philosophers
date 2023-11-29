@@ -6,7 +6,7 @@
 /*   By: bcopoglu <bcopoglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:52:04 by bcopoglu          #+#    #+#             */
-/*   Updated: 2023/11/29 11:17:08 by bcopoglu         ###   ########.fr       */
+/*   Updated: 2023/11/29 12:35:02 by bcopoglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,14 @@ int	main(int argc, char **argv)
 
 	if (argc != 5 && argc != 6)
 		return (write_error("Invalid Argument"));
+	if (ft_isdigit(argv))
+		return (write_error("Invalid Character Argument"));
 	if (parse(&rules, argv))
 		return (write_error("Mutex Start Error"));
-	if (init_philosophers(&rules))
-		return (write_error("Philosophers Init Error"));
 	if (init_mutex(&rules))
 		return (write_error("Mutex Init Error"));
+	if (init_philosophers(&rules))
+		return (write_error("Philosophers Init Error"));
 	if (launcher(&rules))
 		return (write_error("Thread Create Error"));
 	ft_free(&rules);
