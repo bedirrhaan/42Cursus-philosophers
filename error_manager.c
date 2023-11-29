@@ -6,12 +6,13 @@
 /*   By: bcopoglu <bcopoglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:51:52 by bcopoglu          #+#    #+#             */
-/*   Updated: 2023/11/29 10:53:59 by bcopoglu         ###   ########.fr       */
+/*   Updated: 2023/11/29 11:01:23 by bcopoglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 #include <unistd.h>
+#include <stdlib.h>
 
 int	write_error(char *str)
 {
@@ -26,13 +27,10 @@ int	write_error(char *str)
 	return (1);
 }
 
-int	error_manager(int error)
+void	ft_free(t_rules *rules)
 {
-	if (error == 1)
-		return (write_error("Invalid Argument"));
-	if (error == 2)
-		return (write_error("Mutex Start Error"));
-	return (1);
+	free (rules->forks);
+	free (rules->philosophers);
 }
 
 void	eat_control(t_rules *r, t_philosopher *p)

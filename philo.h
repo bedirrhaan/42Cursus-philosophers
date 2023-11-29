@@ -6,7 +6,7 @@
 /*   By: bcopoglu <bcopoglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:52:16 by bcopoglu          #+#    #+#             */
-/*   Updated: 2023/11/28 23:18:22 by bcopoglu         ###   ########.fr       */
+/*   Updated: 2023/11/29 11:00:33 by bcopoglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ typedef struct s_rules
 */
 
 int						write_error(char *str);
-int						error_manager(int error);
 void					eat_control(t_rules *r, t_philosopher *p);
+void					ft_free(t_rules *rules);
 
 /*
 ** ----- init.c -----
