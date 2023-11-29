@@ -6,13 +6,27 @@
 /*   By: bcopoglu <bcopoglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:51:52 by bcopoglu          #+#    #+#             */
-/*   Updated: 2023/11/29 11:01:23 by bcopoglu         ###   ########.fr       */
+/*   Updated: 2023/11/29 12:40:17 by bcopoglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 #include <unistd.h>
 #include <stdlib.h>
+#include <stdio.h>
+
+void	action_print(t_rules *rules, int id, char *string)
+{
+	pthread_mutex_lock(&(rules->writing));
+	if (!(rules->dieded))
+	{
+		printf("%lli ", timestamp() - rules->first_timestamp);
+		printf("%i ", id + 1);
+		printf("%s\n", string);
+	}
+	pthread_mutex_unlock(&(rules->writing));
+	return ;
+}
 
 int	write_error(char *str)
 {

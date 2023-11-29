@@ -6,13 +6,12 @@
 /*   By: bcopoglu <bcopoglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:52:09 by bcopoglu          #+#    #+#             */
-/*   Updated: 2023/11/29 12:35:59 by bcopoglu         ###   ########.fr       */
+/*   Updated: 2023/11/29 12:39:41 by bcopoglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <sys/time.h>
 #include <unistd.h>
-#include <stdio.h>
 #include "philo.h"
 
 int	ft_atoi(const char *str)
@@ -64,19 +63,6 @@ void	smart_sleep(long long time, t_rules *rules)
 			break ;
 		usleep(50);
 	}
-}
-
-void	action_print(t_rules *rules, int id, char *string)
-{
-	pthread_mutex_lock(&(rules->writing));
-	if (!(rules->dieded))
-	{
-		printf("%lli ", timestamp() - rules->first_timestamp);
-		printf("%i ", id + 1);
-		printf("%s\n", string);
-	}
-	pthread_mutex_unlock(&(rules->writing));
-	return ;
 }
 
 int	ft_isdigit(char **array)

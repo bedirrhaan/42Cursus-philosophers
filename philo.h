@@ -6,7 +6,7 @@
 /*   By: bcopoglu <bcopoglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:52:16 by bcopoglu          #+#    #+#             */
-/*   Updated: 2023/11/29 12:33:58 by bcopoglu         ###   ########.fr       */
+/*   Updated: 2023/11/29 12:40:50 by bcopoglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_rules
 int						write_error(char *str);
 void					eat_control(t_rules *r, t_philosopher *p);
 void					ft_free(t_rules *rules);
+void					action_print(t_rules *rules, int id, char *string);
 
 /*
 ** ----- init.c -----
@@ -64,7 +65,6 @@ int						init_mutex(t_rules *rules);
 
 int						ft_atoi(const char *str);
 int						ft_isdigit(char **array);
-void					action_print(t_rules *rules, int id, char *string);
 long long				timestamp(void);
 long long				time_diff(long long past, long long pres);
 void					smart_sleep(long long time, t_rules *rules);
