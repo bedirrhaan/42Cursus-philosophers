@@ -6,7 +6,7 @@
 /*   By: bcopoglu <bcopoglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:52:16 by bcopoglu          #+#    #+#             */
-/*   Updated: 2023/11/29 11:00:33 by bcopoglu         ###   ########.fr       */
+/*   Updated: 2023/11/29 11:34:18 by bcopoglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,9 @@ void					ft_free(t_rules *rules);
 ** ----- init.c -----
 */
 
-int						init_all(t_rules *rules, char **argv);
+int						parse(t_rules *rules, char **argv);
+int						init_philosophers(t_rules *rules);
+int						init_mutex(t_rules *rules);
 
 /*
 ** ----- utils.c -----

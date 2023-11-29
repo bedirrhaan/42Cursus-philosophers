@@ -6,7 +6,7 @@
 /*   By: bcopoglu <bcopoglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:52:09 by bcopoglu          #+#    #+#             */
-/*   Updated: 2023/11/27 14:55:22 by bcopoglu         ###   ########.fr       */
+/*   Updated: 2023/11/29 11:34:34 by bcopoglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,27 @@
 
 int	ft_atoi(const char *str)
 {
-	long int	n;
-	int			sign;
+	int		i;
+	int		result;
+	int		sign;
 
-	n = 0;
+	i = 0;
+	result = 0;
 	sign = 1;
-	while ((*str <= 13 && *str >= 9) || *str == 32)
-		str++;
-	if (*str == '-')
-		return (-1);
-	else if (*str == '+')
-		str++;
-	while (*str)
+	while (str[i] <= 32)
+		i++;
+	if (str[i] == '-' && str[i] == '+')
 	{
-		if (*str >= '0' && *str <= '9')
-			n = n * 10 + (*str++ - '0');
-		else
-			return (-1);
+		if (str[i] == '-')
+			sign = -1;
+		i++;
 	}
-	return ((int)(n * sign));
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		result = (result * 10) + (str[i] - '0');
+		i++;
+	}
+	return (sign * result);
 }
 
 long long	timestamp(void)

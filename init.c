@@ -6,7 +6,7 @@
 /*   By: bcopoglu <bcopoglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:51:45 by bcopoglu          #+#    #+#             */
-/*   Updated: 2023/11/29 10:46:32 by bcopoglu         ###   ########.fr       */
+/*   Updated: 2023/11/29 11:33:52 by bcopoglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	init_philosophers(t_rules *rules)
 	return (0);
 }
 
-int	init_all(t_rules *rules, char **argv)
+int	parse(t_rules *rules, char **argv)
 {
 	rules->nb_philo = ft_atoi(argv[1]);
 	rules->time_death = ft_atoi(argv[2]);
@@ -73,8 +73,5 @@ int	init_all(t_rules *rules, char **argv)
 	}
 	else
 		rules->nb_eat = -1;
-	if (init_mutex(rules))
-		return (2);
-	init_philosophers(rules);
 	return (0);
 }
