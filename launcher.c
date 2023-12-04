@@ -6,7 +6,7 @@
 /*   By: bcopoglu <bcopoglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:51:35 by bcopoglu          #+#    #+#             */
-/*   Updated: 2023/11/29 13:29:37 by bcopoglu         ###   ########.fr       */
+/*   Updated: 2023/12/04 04:55:46 by bcopoglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	*routine(void *void_philosopher)
 	philo = (t_philosopher *)void_philosopher;
 	rules = philo->rules;
 	if (philo->id % 2)
-		usleep(15000);
+		usleep(1000);
 	while (!(rules->dieded))
 	{
 		philo_eats(philo);

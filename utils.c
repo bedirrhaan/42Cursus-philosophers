@@ -6,7 +6,7 @@
 /*   By: bcopoglu <bcopoglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:52:09 by bcopoglu          #+#    #+#             */
-/*   Updated: 2023/11/29 12:39:41 by bcopoglu         ###   ########.fr       */
+/*   Updated: 2023/12/04 04:57:52 by bcopoglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,11 @@ int	ft_atoi(const char *str)
 long long	timestamp(void)
 {
 	struct timeval	t;
+	long long		time;
 
 	gettimeofday(&t, NULL);
-	return ((t.tv_sec * 1000) + (t.tv_usec / 1000));
+	time = (t.tv_sec * 1000) + (t.tv_usec / 1000);
+	return (time);
 }
 
 long long	time_diff(long long past, long long pres)
@@ -61,7 +63,7 @@ void	smart_sleep(long long time, t_rules *rules)
 	{
 		if (time_diff(i, timestamp()) >= time)
 			break ;
-		usleep(50);
+		usleep(5);
 	}
 }
 
