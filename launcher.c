@@ -6,7 +6,7 @@
 /*   By: bcopoglu <bcopoglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:51:35 by bcopoglu          #+#    #+#             */
-/*   Updated: 2023/12/04 15:59:16 by bcopoglu         ###   ########.fr       */
+/*   Updated: 2023/12/04 16:50:08 by bcopoglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,9 @@ void	philo_eats(t_philosopher *philo)
 
 void	*routine(void *void_philosopher)
 {
-	int				i;
 	t_philosopher	*philo;
 	t_rules			*rules;
 
-	i = 0;
 	philo = (t_philosopher *)void_philosopher;
 	rules = philo->rules;
 	if (philo->id % 2)
@@ -48,15 +46,14 @@ void	*routine(void *void_philosopher)
 	{
 		philo_eats(philo);
 		pthread_mutex_lock(&(rules->die_check));
-		if(rules->dieded)
+		if (rules->dieded)
 		{
 			pthread_mutex_unlock(&(rules->die_check));
-			break;
+			break ;
 		}
 		pthread_mutex_unlock(&(rules->die_check));
-		if (rules->nb_eat != -1 && rules->all_ate)
-			break ;
-		if (rules->nb_eat != -1 && philo->x_ate >= rules->nb_eat)
+		if (rules->nb_eat != -1 && (rules->all_ate
+				|| philo->x_ate >= rules->nb_eat))
 			break ;
 		action_print(rules, philo->id, "is sleeping");
 		smart_sleep(rules->time_sleep, rules);
@@ -80,11 +77,8 @@ void	exit_launcher(t_rules *rules, t_philosopher *philos)
 	pthread_mutex_destroy(&(rules->meal_check));
 }
 
-void	death_checker(t_rules *r, t_philosopher *p)
+void	death_checker(t_rules *r, t_philosopher *p, int i, int j)
 {
-	int	i;
-	int	j;
-
 	while (!(r->all_ate))
 	{
 		i = -1;
@@ -105,7 +99,7 @@ void	death_checker(t_rules *r, t_philosopher *p)
 			usleep(100);
 		}
 		if (r->dieded)
-			break;
+			break ;
 		pthread_mutex_unlock(&(r->die_check));
 		eat_control(r, p);
 	}
@@ -128,7 +122,7 @@ int	launcher(t_rules *rules)
 		pthread_mutex_unlock(&(rules->meal_check));
 		i++;
 	}
-	death_checker(rules, rules->philosophers);
+	death_checker(rules, rules->philosophers, -1, -1);
 	exit_launcher(rules, phi);
 	return (0);
 }
