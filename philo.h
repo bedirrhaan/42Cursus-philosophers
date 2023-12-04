@@ -6,7 +6,7 @@
 /*   By: bcopoglu <bcopoglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:52:16 by bcopoglu          #+#    #+#             */
-/*   Updated: 2023/12/03 23:39:52 by bcopoglu         ###   ########.fr       */
+/*   Updated: 2023/12/04 14:23:08 by bcopoglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,10 @@ typedef struct s_rules
 	int					time_eat;
 	int					time_sleep;
 	int					nb_eat;
-	int					dieded;
 	int					all_ate;
+	int					dieded;
 	long long			first_timestamp;
+	pthread_mutex_t		die_check;
 	pthread_mutex_t		meal_check;
 	pthread_mutex_t		*forks;
 	pthread_mutex_t		writing;

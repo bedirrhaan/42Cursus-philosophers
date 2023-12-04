@@ -6,7 +6,7 @@
 /*   By: bcopoglu <bcopoglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:51:45 by bcopoglu          #+#    #+#             */
-/*   Updated: 2023/11/29 12:33:33 by bcopoglu         ###   ########.fr       */
+/*   Updated: 2023/12/04 14:23:42 by bcopoglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	init_mutex(t_rules *rules)
 	if (pthread_mutex_init(&(rules->writing), NULL))
 		return (1);
 	if (pthread_mutex_init(&(rules->meal_check), NULL))
+		return (1);
+	if (pthread_mutex_init(&(rules->die_check), NULL))
 		return (1);
 	return (0);
 }

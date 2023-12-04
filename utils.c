@@ -6,7 +6,7 @@
 /*   By: bcopoglu <bcopoglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:52:09 by bcopoglu          #+#    #+#             */
-/*   Updated: 2023/12/04 04:57:52 by bcopoglu         ###   ########.fr       */
+/*   Updated: 2023/12/04 16:08:31 by bcopoglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,18 @@ void	smart_sleep(long long time, t_rules *rules)
 	long long	i;
 
 	i = timestamp();
-	while (!(rules->dieded))
+	while (1)
 	{
 		if (time_diff(i, timestamp()) >= time)
 			break ;
-		usleep(5);
+		pthread_mutex_lock(&(rules->die_check));
+		if (rules->dieded)
+		{
+			pthread_mutex_unlock(&(rules->die_check));
+			break ;
+		}
+		pthread_mutex_unlock(&(rules->die_check));
+		usleep(10);
 	}
 }
 
