@@ -6,7 +6,7 @@
 /*   By: bcopoglu <bcopoglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:52:04 by bcopoglu          #+#    #+#             */
-/*   Updated: 2023/12/05 04:12:22 by bcopoglu         ###   ########.fr       */
+/*   Updated: 2023/12/05 06:10:38 by bcopoglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,4 @@ int	main(int argc, char **argv)
 		return (write_error("Philosophers Init Error"), 0);
 	if (launcher(&rules))
 		return (write_error("Thread Create Error"), 0);
-	ft_free(&rules);
 }

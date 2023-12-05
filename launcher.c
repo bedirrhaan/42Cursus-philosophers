@@ -6,7 +6,7 @@
 /*   By: bcopoglu <bcopoglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:51:35 by bcopoglu          #+#    #+#             */
-/*   Updated: 2023/12/05 04:45:34 by bcopoglu         ###   ########.fr       */
+/*   Updated: 2023/12/05 06:10:26 by bcopoglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	exit_launcher(t_rules *rules, t_philosopher *philos)
 	pthread_mutex_destroy(&(rules->t_last_meal_check));
 	pthread_mutex_destroy(&(rules->dieded_check));
 	pthread_mutex_destroy(&(rules->all_ate_check));
+	ft_free(rules);
 }
 
 void	death_checker(t_rules *r, t_philosopher *p, int i, int j)
@@ -109,9 +110,9 @@ int	launcher(t_rules *rules)
 	{
 		if (pthread_create(&(phi[i].thread_id), NULL, routine, &(phi[i])))
 			return (1);
-		pthread_mutex_lock(&(rules->meal_check));
+		pthread_mutex_lock(&(rules->t_last_meal_check));
 		phi[i].t_last_meal = timestamp();
-		pthread_mutex_unlock(&(rules->meal_check));
+		pthread_mutex_unlock(&(rules->t_last_meal_check));
 		i++;
 	}
 	death_checker(rules, rules->philosophers, -1, -1);
