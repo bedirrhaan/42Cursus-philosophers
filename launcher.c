@@ -6,7 +6,7 @@
 /*   By: bcopoglu <bcopoglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:51:35 by bcopoglu          #+#    #+#             */
-/*   Updated: 2023/12/05 06:10:26 by bcopoglu         ###   ########.fr       */
+/*   Updated: 2023/12/05 20:05:49 by bcopoglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	*routine(void *void_philosopher)
 	philo = (t_philosopher *)void_philosopher;
 	rules = philo->rules;
 	if (philo->id % 2)
-		usleep(10000);
+		usleep(15000);
 	routine_while(philo, rules);
 	return (NULL);
 }
@@ -69,6 +69,7 @@ void	exit_launcher(t_rules *rules, t_philosopher *philos)
 	pthread_mutex_destroy(&(rules->t_last_meal_check));
 	pthread_mutex_destroy(&(rules->dieded_check));
 	pthread_mutex_destroy(&(rules->all_ate_check));
+	pthread_mutex_destroy(&(rules->die_write));
 	ft_free(rules);
 }
 
@@ -82,7 +83,9 @@ void	death_checker(t_rules *r, t_philosopher *p, int i, int j)
 			pthread_mutex_lock(&(r->t_last_meal_check));
 			if (time_diff(p[i].t_last_meal, timestamp()) > r->time_death)
 			{
+				pthread_mutex_lock(&(r->die_write));
 				action_print(r, i, "died");
+				pthread_mutex_unlock(&(r->die_write));
 				pthread_mutex_lock(&(r->dieded_check));
 				r->dieded = 1;
 				pthread_mutex_unlock(&(r->dieded_check));
@@ -91,6 +94,7 @@ void	death_checker(t_rules *r, t_philosopher *p, int i, int j)
 					pthread_mutex_unlock(&(r->forks[j]));
 			}
 			pthread_mutex_unlock(&(r->t_last_meal_check));
+			usleep(100);
 		}
 		if (r->dieded)
 			break ;

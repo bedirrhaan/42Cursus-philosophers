@@ -6,7 +6,7 @@
 /*   By: bcopoglu <bcopoglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:52:09 by bcopoglu          #+#    #+#             */
-/*   Updated: 2023/12/05 06:20:26 by bcopoglu         ###   ########.fr       */
+/*   Updated: 2023/12/05 15:33:30 by bcopoglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	smart_sleep(long long time, t_rules *rules)
 			break ;
 		}
 		pthread_mutex_unlock(&(rules->dieded_check));
-		usleep(10);
+		usleep(50);
 	}
 }
 

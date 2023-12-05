@@ -6,7 +6,7 @@
 /*   By: bcopoglu <bcopoglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:52:16 by bcopoglu          #+#    #+#             */
-/*   Updated: 2023/12/05 04:46:55 by bcopoglu         ###   ########.fr       */
+/*   Updated: 2023/12/05 19:55:20 by bcopoglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_rules
 	pthread_mutex_t		meal_check;
 	pthread_mutex_t		*forks;
 	pthread_mutex_t		writing;
+	pthread_mutex_t		die_write;
 	t_philosopher		*philosophers;
 }						t_rules;
 

@@ -6,7 +6,7 @@
 /*   By: bcopoglu <bcopoglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:51:45 by bcopoglu          #+#    #+#             */
-/*   Updated: 2023/12/05 05:59:05 by bcopoglu         ###   ########.fr       */
+/*   Updated: 2023/12/05 19:54:51 by bcopoglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ int	init_mutex(t_rules *rules)
 		|| pthread_mutex_init(&(rules->x_ate_check), NULL)
 		|| pthread_mutex_init(&(rules->t_last_meal_check), NULL)
 		|| pthread_mutex_init(&(rules->dieded_check), NULL)
-		|| pthread_mutex_init(&(rules->all_ate_check), NULL))
+		|| pthread_mutex_init(&(rules->all_ate_check), NULL)
+		|| pthread_mutex_init(&(rules->die_write), NULL))
 		return (1);
 	return (0);
 }
@@ -61,15 +62,15 @@ int	init_philosophers(t_rules *rules)
 int	parse(t_rules *rules, char **argv)
 {
 	rules->nb_philo = ft_atoi(argv[1]);
-	if (rules->nb_philo > 250)
+	if (rules->nb_philo > 200)
 		return (write_error("Ayip degil mi?"), 1);
 	rules->time_death = ft_atoi(argv[2]);
 	rules->time_eat = ft_atoi(argv[3]);
 	rules->time_sleep = ft_atoi(argv[4]);
 	rules->all_ate = 0;
 	rules->dieded = 0;
-	if (rules->nb_philo <= 0 || rules->time_death < 0 || rules->time_eat < 0
-		|| rules->time_sleep < 0)
+	if (rules->nb_philo <= 0 || rules->time_death <= 0 || rules->time_eat <= 0
+		|| rules->time_sleep <= 0)
 		return (1);
 	if (argv[5])
 	{

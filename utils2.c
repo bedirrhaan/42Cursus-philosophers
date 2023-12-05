@@ -6,7 +6,7 @@
 /*   By: bcopoglu <bcopoglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:51:52 by bcopoglu          #+#    #+#             */
-/*   Updated: 2023/12/05 04:47:13 by bcopoglu         ###   ########.fr       */
+/*   Updated: 2023/12/05 20:23:17 by bcopoglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	action_print(t_rules *rules, int id, char *string)
 		printf("%lli ", timestamp() - rules->first_timestamp);
 		printf("%i ", id + 1);
 		printf("%s\n", string);
+		usleep(100);
 	}
 	pthread_mutex_unlock(&(rules->dieded_check));
 	return ;
@@ -70,11 +71,13 @@ void	philo_eats(t_philosopher *philo)
 
 	rules = philo->rules;
 	pthread_mutex_lock(&(rules->forks[philo->left_fork_id]));
-	action_print(rules, philo->id, "has taken a fork");
 	pthread_mutex_lock(&(rules->forks[philo->right_fork_id]));
-	action_print(rules, philo->id, "has taken a fork");
 	pthread_mutex_lock(&(rules->meal_check));
+	pthread_mutex_lock(&(rules->die_write));
+	action_print(rules, philo->id, "has taken a fork");
+	action_print(rules, philo->id, "has taken a fork");
 	action_print(rules, philo->id, "is eating");
+	pthread_mutex_unlock(&(rules->die_write));
 	pthread_mutex_unlock(&(rules->meal_check));
 	pthread_mutex_lock(&(rules->t_last_meal_check));
 	philo->t_last_meal = timestamp();
