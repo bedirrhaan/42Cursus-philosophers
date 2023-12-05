@@ -1,7 +1,7 @@
 
 SRCS	= main.c
 
-SRCS	+= error_manager.c init.c utils.c launcher.c
+SRCS	+= utils2.c init.c utils.c launcher.c
 
 OBJS	= $(SRCS:.c=.o)
 

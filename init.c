@@ -6,7 +6,7 @@
 /*   By: bcopoglu <bcopoglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:51:45 by bcopoglu          #+#    #+#             */
-/*   Updated: 2023/12/04 14:23:42 by bcopoglu         ###   ########.fr       */
+/*   Updated: 2023/12/05 04:30:33 by bcopoglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,14 @@ int	init_mutex(t_rules *rules)
 		if (pthread_mutex_init(&(rules->forks[i]), NULL))
 			return (1);
 	}
-	if (pthread_mutex_init(&(rules->writing), NULL))
-		return (1);
-	if (pthread_mutex_init(&(rules->meal_check), NULL))
-		return (1);
-	if (pthread_mutex_init(&(rules->die_check), NULL))
+	if (pthread_mutex_init(&(rules->writing), NULL)
+		|| pthread_mutex_init(&(rules->meal_check), NULL)
+		|| pthread_mutex_init(&(rules->meal_check), NULL)
+		|| pthread_mutex_init(&(rules->die_check), NULL)
+		|| pthread_mutex_init(&(rules->x_ate_check), NULL)
+		|| pthread_mutex_init(&(rules->t_last_meal_check), NULL)
+		|| pthread_mutex_init(&(rules->dieded_check), NULL)
+		|| pthread_mutex_init(&(rules->all_ate_check), NULL))
 		return (1);
 	return (0);
 }

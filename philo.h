@@ -6,7 +6,7 @@
 /*   By: bcopoglu <bcopoglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:52:16 by bcopoglu          #+#    #+#             */
-/*   Updated: 2023/12/04 14:23:08 by bcopoglu         ###   ########.fr       */
+/*   Updated: 2023/12/05 04:46:55 by bcopoglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,11 @@ typedef struct s_rules
 	int					all_ate;
 	int					dieded;
 	long long			first_timestamp;
+	pthread_mutex_t		t_last_meal_check;
+	pthread_mutex_t		x_ate_check;
 	pthread_mutex_t		die_check;
+	pthread_mutex_t		dieded_check;
+	pthread_mutex_t		all_ate_check;
 	pthread_mutex_t		meal_check;
 	pthread_mutex_t		*forks;
 	pthread_mutex_t		writing;
@@ -44,14 +48,14 @@ typedef struct s_rules
 }						t_rules;
 
 /*
-** ----- error_manager.c -----
+** ----- utils2.c -----
 */
 
 int						write_error(char *str);
 void					eat_control(t_rules *r, t_philosopher *p);
 void					ft_free(t_rules *rules);
 void					action_print(t_rules *rules, int id, char *string);
-
+void					philo_eats(t_philosopher *philo);
 /*
 ** ----- init.c -----
 */
