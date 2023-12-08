@@ -6,12 +6,13 @@
 /*   By: bcopoglu <bcopoglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:51:35 by bcopoglu          #+#    #+#             */
-/*   Updated: 2023/12/05 20:05:49 by bcopoglu         ###   ########.fr       */
+/*   Updated: 2023/12/08 03:26:44 by bcopoglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 #include <unistd.h>
+#include <stdio.h>
 
 void	routine_while(t_philosopher *philo, t_rules *rules)
 {
@@ -83,10 +84,10 @@ void	death_checker(t_rules *r, t_philosopher *p, int i, int j)
 			pthread_mutex_lock(&(r->t_last_meal_check));
 			if (time_diff(p[i].t_last_meal, timestamp()) > r->time_death)
 			{
-				pthread_mutex_lock(&(r->die_write));
-				action_print(r, i, "died");
-				pthread_mutex_unlock(&(r->die_write));
 				pthread_mutex_lock(&(r->dieded_check));
+				printf("%i ", (int)(timestamp() - r->first_timestamp));
+				printf("%i ", i + 1);
+				printf("%s\n", "died");
 				r->dieded = 1;
 				pthread_mutex_unlock(&(r->dieded_check));
 				j = -1;
@@ -94,7 +95,7 @@ void	death_checker(t_rules *r, t_philosopher *p, int i, int j)
 					pthread_mutex_unlock(&(r->forks[j]));
 			}
 			pthread_mutex_unlock(&(r->t_last_meal_check));
-			usleep(100);
+			usleep(50);
 		}
 		if (r->dieded)
 			break ;

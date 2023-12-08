@@ -6,7 +6,7 @@
 /*   By: bcopoglu <bcopoglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:51:52 by bcopoglu          #+#    #+#             */
-/*   Updated: 2023/12/07 19:35:29 by bcopoglu         ###   ########.fr       */
+/*   Updated: 2023/12/08 03:20:55 by bcopoglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	action_print(t_rules *rules, int id, char *string)
 		printf("%lli ", timestamp() - rules->first_timestamp);
 		printf("%i ", id + 1);
 		printf("%s\n", string);
-		usleep(100);
+		usleep(50);
 	}
 	pthread_mutex_unlock(&(rules->dieded_check));
 	return ;
