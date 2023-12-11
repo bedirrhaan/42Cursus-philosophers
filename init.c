@@ -6,7 +6,7 @@
 /*   By: bcopoglu <bcopoglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:51:45 by bcopoglu          #+#    #+#             */
-/*   Updated: 2023/12/11 16:46:27 by bcopoglu         ###   ########.fr       */
+/*   Updated: 2023/12/11 16:52:05 by bcopoglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,17 @@ int	init_mutex(t_rules *rules)
 	rules->forks = malloc(sizeof(pthread_mutex_t) * i);
 	if (!(rules->forks))
 		return (1);
+	if (!destroy_mutex(rules))
+		return (1);
 	while (--i >= 0)
 	{
 		if (pthread_mutex_init(&(rules->forks[i]), NULL))
 		{
 			while (++i < rules->nb_philo)
 				pthread_mutex_destroy(&(rules->forks[i]));
-			return (1);
+			return (chose_mutex(rules, 7), 1);
 		}
 	}
-	if (!destroy_mutex(rules))
-		return (1);
 	return (0);
 }
 
