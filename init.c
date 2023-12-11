@@ -6,7 +6,7 @@
 /*   By: bcopoglu <bcopoglu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:51:45 by bcopoglu          #+#    #+#             */
-/*   Updated: 2023/12/11 16:52:05 by bcopoglu         ###   ########.fr       */
+/*   Updated: 2023/12/11 17:00:24 by bcopoglu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,16 @@ int	init_mutex(t_rules *rules)
 	i = rules->nb_philo;
 	rules->forks = malloc(sizeof(pthread_mutex_t) * i);
 	if (!(rules->forks))
-		return (1);
+		return (free(rules->philosophers), 1);
 	if (!destroy_mutex(rules))
-		return (1);
+		return (free(rules->philosophers), 1);
 	while (--i >= 0)
 	{
 		if (pthread_mutex_init(&(rules->forks[i]), NULL))
 		{
 			while (++i < rules->nb_philo)
 				pthread_mutex_destroy(&(rules->forks[i]));
+			free(rules->philosophers);
 			return (chose_mutex(rules, 7), 1);
 		}
 	}
@@ -82,7 +83,7 @@ int	init_philosophers(t_rules *rules)
 	i = rules->nb_philo;
 	rules->philosophers = malloc(sizeof(t_philosopher) * i);
 	if (!(rules->philosophers))
-		return (free(rules->forks), 1);
+		return (1);
 	while (--i >= 0)
 	{
 		rules->philosophers[i].id = i;
